@@ -1,0 +1,34 @@
+{
+  "name": "angular-schema-form-bs-extra",
+  "version": "0.0.1",
+  "description": "Some extra bootstrap widgets like Typeahead, select2 etc for Angular-Schema-Form.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build" :"gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teampumpkin/angular-schema-form-bs-extra.git"
+  },
+  "keywords": [
+    "angular-schema-form",
+    "bootstrap",
+    "ui-select",
+    "schema-form"
+  ],
+  "author": "Harish.K <harish2704@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teampumpkin/angular-schema-form-bs-extra/issues"
+  },
+  "homepage": "https://github.com/teampumpkin/angular-schema-form-bs-extra#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.3"
+  }
+}
