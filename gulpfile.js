@@ -19,7 +19,7 @@ gulp.task('templateCache', function () {
       quotes: true
     }))
     .pipe(templateCache({
-      standalone: true,
+      module: 'asf.bs-extra'
     }))
     .pipe(gulp.dest('dist'));
 });
