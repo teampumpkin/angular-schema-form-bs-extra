@@ -1,0 +1,26 @@
+{
+  "name": "angular-schema-form-bs-extra",
+  "homepage": "https://github.com/teampumpkin/angular-schema-form-bs-extra",
+  "authors": [
+    "Harish.K <harish2704@gmail.com>"
+  ],
+  "description": "Some extra bootstrap widgets like Typeahead, select2 etc for Angular-Schema-Form.",
+  "main": "src/index.js",
+  "keywords": [
+    "angular-schema-form",
+    "bootstrap",
+    "ui-select",
+    "schema-form"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-select": "^0.19.6"
+  }
+}
