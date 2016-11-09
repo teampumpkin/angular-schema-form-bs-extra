@@ -31,7 +31,7 @@ angular.module( 'asf.bs-extra', ['ui.select'] )
 
   }]);
 
-angular.module('schemaForm').config(
+angular.module('asf.bs-extra').config(
   ['schemaFormDecoratorsProvider', 'sfBuilderProvider',
     function (schemaFormDecoratorsProvider, sfBuilderProvider ) {
       schemaFormDecoratorsProvider.defineAddOn(
