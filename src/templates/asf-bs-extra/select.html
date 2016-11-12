@@ -12,7 +12,7 @@
     class="form-control {{form.fieldHtmlClass}}"
     schema-validate="form"
     name="{{form.key.slice(-1)[0]}}">
-    <ui-select-match placeholder="{{ form.placeholder }}">
+    <ui-select-match placeholder="{{ form.placeholder }}" allow-clear="true" >
       {{$select.selected.id}}
     </ui-select-match>
     <ui-select-choices repeat="getVal(item, form.ref.val ) as item in search( form.ref, $select.search )">
