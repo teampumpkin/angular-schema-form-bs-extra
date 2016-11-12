@@ -35,16 +35,16 @@ angular.module('asf.bs-extra').config(
   ['schemaFormDecoratorsProvider', 'sfBuilderProvider',
     function (schemaFormDecoratorsProvider, sfBuilderProvider ) {
       schemaFormDecoratorsProvider.defineAddOn(
-        'bootstrapDecorator',         // Name of the decorator you want to add to.
-        'uiselect',                    // Form type that should render this add-on
-        'asf-bs-extra/select.html',    // Template name in $templateCache
-        sfBuilderProvider.stdBuilders // List of builder functions to apply.
+        'bootstrapDecorator',
+        'bse:select',
+        'asf-bs-extra/select.html',
+        sfBuilderProvider.stdBuilders
       );
       schemaFormDecoratorsProvider.defineAddOn(
-        'bootstrapDecorator',         // Name of the decorator you want to add to.
-        'typeahead',                    // Form type that should render this add-on
-        'asf-bs-extra/typeahead.html',    // Template name in $templateCache
-        sfBuilderProvider.stdBuilders // List of builder functions to apply.
+        'bootstrapDecorator',
+        'bse:typeahead',
+        'asf-bs-extra/typeahead.html',
+        sfBuilderProvider.stdBuilders
       );
     }]);
 
