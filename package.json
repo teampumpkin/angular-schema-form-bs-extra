@@ -1,6 +1,6 @@
 {
   "name": "angular-schema-form-bs-extra",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Some extra bootstrap widgets like Typeahead, select2 etc for Angular-Schema-Form.",
   "main": "src/index.js",
   "scripts": {
