@@ -5,17 +5,18 @@
     ng-show="showTitle()">
     {{form.title}}
   </label>
-  <ui-select ng-model="$$value$$"
-    ng-model-options="form.ngModelOptions"
+  <div class="{{ form.fieldWrapperHtmlClass }}">
+  <ui-select
+    sf-field-model
     ng-disabled="form.readonly"
     sf-changed="form"
-    class="form-control {{form.fieldHtmlClass}}"
+    class="{{form.fieldHtmlClass}}"
     schema-validate="form"
     name="{{form.key.slice(-1)[0]}}">
     <ui-select-match placeholder="{{ form.placeholder }}" allow-clear="true" >
-      {{$select.selected.id}}
+      <span ng-bind-html="getVal( $select.selected, form.ref.label )" ></span>
     </ui-select-match>
-    <ui-select-choices repeat="getVal(item, form.ref.val ) as item in search( form.ref, $select.search )">
+    <ui-select-choices repeat="getVal(item, form.ref.value ) as item in optionsData" refresh="search( form.ref, $select.search )" refresh-delay="1" >
       <span ng-bind-html="getVal( item, form.ref.label ) " ></span>
     </ui-select-choices>
   </ui-select>
@@ -27,5 +28,6 @@
     {{ hasSuccess() ? '(success)' : '(error)' }}
   </span>
   <div class="help-block" sf-message="form.description">
+  </div>
   </div>
 </div>

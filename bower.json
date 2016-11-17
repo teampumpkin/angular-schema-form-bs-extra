@@ -21,6 +21,8 @@
     "tests"
   ],
   "dependencies": {
-    "angular-ui-select": "^0.19.6"
+    "angular-ui-select": "^0.19.6",
+    "moment": "^2.16.0"
+  },
   }
 }
