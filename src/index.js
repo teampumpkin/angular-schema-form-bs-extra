@@ -1,6 +1,6 @@
 /* ഓം ബ്രഹ്മാർപ്പണം. */
 
-angular.module( 'asf.bs-extra', ['ui.select'] )
+angular.module( 'asf.bs-extra', ['ui.select', 'ui.bootstrap.datetimepicker' ] )
   .service( 'bseDataSource', function(){
     var sources = {};
     this.addSource = function( name, fn ){
@@ -20,7 +20,21 @@ angular.module( 'asf.bs-extra', ['ui.select'] )
   })
   .controller( 'typeaheadCtrl', [ '$scope', 'bseDataSource', '$interpolate', function( $scope, bseDataSource, $interpolate ){
     var functionCache = {};
-    $scope.search = bseDataSource.search;
+    $scope.optionsData = [];
+    function fillArr( arr, items ){
+      arr.splice(0);
+      items.forEach( function(v){ arr.push(v); });
+    }
+    $scope.search = function(ref, str ){
+      if( $scope.form.isAsync ){
+        bseDataSource.search( ref, str ).then( function( items ){
+          fillArr( $scope.optionsData, items );
+        });
+      } else {
+        fillArr( $scope.optionsData, bseDataSource.search( ref, str ) );
+      }
+    };
+
     $scope.getVal = function( item, prop ){
       if( prop === undefined ){ return item; }
       if( !functionCache[prop] ){
@@ -32,12 +46,19 @@ angular.module( 'asf.bs-extra', ['ui.select'] )
   }]);
 
 angular.module('asf.bs-extra').config(
-  ['schemaFormDecoratorsProvider', 'sfBuilderProvider',
-    function (schemaFormDecoratorsProvider, sfBuilderProvider ) {
+  ['schemaFormDecoratorsProvider', 'sfBuilderProvider', 'schemaFormProvider', 'sfPathProvider',
+    function (schemaFormDecoratorsProvider, sfBuilderProvider, schemaFormProvider, sfPathProvider ) {
+
       schemaFormDecoratorsProvider.defineAddOn(
         'bootstrapDecorator',
         'bse:select',
         'asf-bs-extra/select.html',
+        sfBuilderProvider.stdBuilders
+      );
+      schemaFormDecoratorsProvider.defineAddOn(
+        'bootstrapDecorator',
+        'bse:datetime',
+        'asf-bs-extra/datetime.html',
         sfBuilderProvider.stdBuilders
       );
       schemaFormDecoratorsProvider.defineAddOn(
