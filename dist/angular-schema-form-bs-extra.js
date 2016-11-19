@@ -51,6 +51,12 @@ angular.module('asf.bs-extra').config(
 
       schemaFormDecoratorsProvider.defineAddOn(
         'bootstrapDecorator',
+        'bse:multiselect',
+        'asf-bs-extra/multi-select.html',
+        sfBuilderProvider.stdBuilders
+      );
+      schemaFormDecoratorsProvider.defineAddOn(
+        'bootstrapDecorator',
         'bse:select',
         'asf-bs-extra/select.html',
         sfBuilderProvider.stdBuilders
