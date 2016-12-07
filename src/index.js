@@ -1,6 +1,6 @@
 /* ഓം ബ്രഹ്മാർപ്പണം. */
 
-angular.module( 'asf.bs-extra', ['ui.select', 'ui.bootstrap.datetimepicker' ] )
+angular.module( 'asf.bs-extra', ['ui.select', 'ui.bootstrap.datetimepicker', 'ngFileUpload', 'ngImgCrop' ] )
   .service( 'bseDataSource', function(){
     var sources = {};
     this.addSource = function( name, fn ){
@@ -42,8 +42,42 @@ angular.module( 'asf.bs-extra', ['ui.select', 'ui.bootstrap.datetimepicker' ] )
       }
       return functionCache[prop](item);
     };
+  }])
+  .directive( 'bseFileupload', [ 'Upload', function( Upload ){
+    return {
+      restrict: 'A',
+      scope:    true,
+      require:  'ngModel',
+      link:     function (scope, element, attrs, ngModel) {
+        scope.modelObj = scope.model;
+        scope.fieldName = scope.form.key[0];
+        scope.picFile = null;
+        scope._state = scope.modelObj? 'loaded' : 'empty';
+        scope.$watch( 'picFile', function( newVal, old, scope ){
+          if( newVal ){
+            scope._state = 'changed';
+          }
+        });
 
-  }]);
+        scope.upload = function (dataUrl, name) {
+          Upload.upload({
+            url: '/upload?group=' + scope.form.groupName,
+            data: {
+              file: Upload.dataUrltoBlob(dataUrl, name)
+            },
+          }).then(function (response) {
+            scope.model[scope.fieldName] = response.data[0];
+            scope._state = 'loaded';
+          }, function (response) {
+            if (response.status > 0) scope.errorMsg = response.status + ': ' + response.data;
+          }, function (evt) {
+            scope.progress = parseInt(100.0 * evt.loaded / evt.total);
+          });
+        };
+
+      }
+    };
+  } ]);
 
 angular.module('asf.bs-extra').config(
   ['schemaFormDecoratorsProvider', 'sfBuilderProvider', 'schemaFormProvider', 'sfPathProvider',
@@ -65,6 +99,12 @@ angular.module('asf.bs-extra').config(
         'bootstrapDecorator',
         'bse:datetime',
         'asf-bs-extra/datetime.html',
+        sfBuilderProvider.stdBuilders
+      );
+      schemaFormDecoratorsProvider.defineAddOn(
+        'bootstrapDecorator',
+        'bse:fileupload',
+        'asf-bs-extra/fileupload.html',
         sfBuilderProvider.stdBuilders
       );
       schemaFormDecoratorsProvider.defineAddOn(
