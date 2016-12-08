@@ -23,6 +23,8 @@
   "dependencies": {
     "angular-ui-select": "^0.19.6",
     "moment": "^2.16.0",
-    "angular-bootstrap-datetimepicker": "teampumpkin/angular-bootstrap-datetimepicker#1.1.3-tp"
+    "angular-bootstrap-datetimepicker": "teampumpkin/angular-bootstrap-datetimepicker#1.1.3-tp",
+    "ng-file-upload": "^12.2.13",
+    "ng-img-crop": "ngImgCrop#^0.3.2"
   }
 }
