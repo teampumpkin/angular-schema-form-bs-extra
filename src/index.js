@@ -66,8 +66,7 @@ angular.module( 'asf.bs-extra', ['ui.select', 'ui.bootstrap.datetimepicker', 'ng
               file: Upload.dataUrltoBlob(dataUrl, name)
             },
           }).then(function (response) {
-            ngModel.$setViewValue( response.data[0], 'change' );
-            ngModel.$commitViewValue();
+            Object.assign( ngModel.$modelValue, response.data[0] );
             scope._state = 'loaded';
           }, function (response) {
             if (response.status > 0) scope.errorMsg = response.status + ': ' + response.data;
