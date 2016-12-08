@@ -1,4 +1,4 @@
-<div class="form-group {{form.htmlClass}} schema-form-select"
+<div class="form-group {{form.htmlClass}} "
      bse-fileupload
      sf-field-model
      ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false}">
@@ -10,7 +10,7 @@
 
     <div class="{{form.fieldHtmlClass}}">
       <button class="btn btn-primary" ngf-select ng-model="picFile" accept="{{form.accept}}"> Select Picture</button>
-      <div ngf-drop ng-model="picFile" ngf-pattern="{{form.accept}}" class="col-xs-4 cropArea"  ng-hide="_state==='loaded'" >
+      <div ngf-drop ng-model="picFile" ngf-pattern="{{form.accept}}" class="col-xs-4 cropArea"  ng-show="_state==='changed'" >
         <img-crop
           image="picFile|ngfDataUrl"
           result-image="croppedDataUrl"
@@ -19,11 +19,11 @@
           area-type="square"
           class="img-rounded" />
       </div>
-        <div class="col-xs-4"  ng-hide="_state==='loaded'" >
+        <div class="col-xs-4"  ng-show="_state==='changed'" >
           <img ng-src="{{croppedDataUrl}}" width="200px" />
         </div>
         <div class="col-xs-4" ng-show="_state==='loaded'" >
-          <img ng-src="{{modelObj[fieldName].url}}" width="200px" />
+          <img ng-src="{{modelCtrl.$modelValue.url}}" width="200px" />
         </div>
         <a class="btn btn-success" ng-show="_state==='changed'" ng-click="upload(croppedDataUrl, picFile.name)">Upload</a> 
         <div class="col-xs-4">
